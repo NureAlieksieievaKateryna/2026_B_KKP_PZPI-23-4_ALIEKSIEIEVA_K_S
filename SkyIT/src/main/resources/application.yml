@@ -1,0 +1,41 @@
+server:
+  port: 8099
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: TRACE
+
+spring:
+  application:
+   name: SkyIT
+  datasource:
+    url: jdbc:postgresql://localhost:5432/skyit
+    username: test
+    password: 123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: llama3
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8011/realms/skyit
+
+
+jwt:
+  auth:
+    converter:
+      principal-attribute: preferred_username
+      resource-id: skyIt
+      secret: "2Yp5vW3r9tB6fL1gP8sQxZ7uR4mV9yN2kH0jD3aL6eF8wJ1q"
+      expiration: 86400000
